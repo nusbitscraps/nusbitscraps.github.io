@@ -1,0 +1,16 @@
+{
+  "socials": [
+    {
+      "name": "Telegram",
+      "url": "https://t.me/yourchannel"
+    },
+    {
+      "name": "TikTok",
+      "url": "https://www.tiktok.com/@yourprofile"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/yourprofile"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "Laptops": {
+    "description": "Various laptop repairs with various different kinds of issues.",
+    "images": [
+      "img/repairs/laptops/laptop1.webp",
+      "img/repairs/laptops/laptop2.webp"
+    ]
+  },
+  "Mobile Phones": {
+    "description": "Multiple mobiles fixed.",
+    "images": [
+      "img/repairs/phones/phone1.webp",
+      "img/repairs/phones/phone2.webp"
+    ]
+  }
+}

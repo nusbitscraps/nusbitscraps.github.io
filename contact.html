@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUS Bitscraps - Contact Us</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js"></script>
+</head>
+<body>
+
+<!-- Header / Navigation -->
+<header id="main-nav"></header>
+
+<!-- Cover Section -->
+<section class="header">
+  <h1>Contact Us</h1>
+  <p>Connect with us on our social channels for updates and collaborations!</p>
+</section>
+
+<!-- Dynamic Content -->
+<main class="tab-content active" id="contact-content">
+  <h2>Our Social Channels</h2>
+  <div class="social-links" id="social-links">
+    <!-- JS will populate this -->
+  </div>
+</main>
+
+<!-- Social / Footer -->
+<footer class="social">
+  <p>© NUS Bitscraps</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('data/contact.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('social-links');
+      data.socials.forEach(social => {
+        const a = document.createElement('a');
+        a.href = social.url;
+        a.textContent = social.name;
+        a.target = "_blank";
+        a.style.margin = "0 1rem";
+        a.style.fontWeight = "bold";
+        a.style.color = "#FF7F00"; // Optional: highlight color
+        container.appendChild(a);
+      });
+    })
+    .catch(err => console.error("Failed to load contact.json:", err));
+});
+</script>
+</body>
+</html>

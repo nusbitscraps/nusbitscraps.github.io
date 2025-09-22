@@ -1,0 +1,12 @@
+{
+  "WIRED": {
+    "title": "Hackathon with IEEE",
+    "description": "Photos from our hackathon with IEEE in 2024",
+    "images": [
+      "img/hackathons/IEEE/hack1.webp",
+      "img/hackathons/IEEE/hack2.webp",
+      "img/hackathons/IEEE/hack3.webp",
+      "img/hackathons/IEEE/hack4.webp"
+    ]
+  }
+}

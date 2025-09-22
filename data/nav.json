@@ -1,0 +1,10 @@
+[
+  {"title": "Home", "url": "index.html"},
+  {"title": "About", "url": "about.html"},
+  {"title": "Sessions", "url": "sessions.html"},
+  {"title": "Hackathons", "url": "hackathons.html"},
+  {"title": "Repair Sessions", "url": "repairs.html"},
+  {"title": "Donation Drive", "url": "donation.html"},
+  {"title": "Exco", "url": "exco.html"},
+  {"title": "Contact Us", "url": "contact.html"}
+]

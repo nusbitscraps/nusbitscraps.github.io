@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUS Bitscraps - Hackathons</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<header id="main-nav"></header>
+
+<!-- Header Section -->
+<section class="header">
+  <h1>Hackathons</h1>
+  <p>Explore our hackathons over the past years!</p>
+</section>
+
+<!-- Dynamic Content -->
+<main class="tab-content active" id="hackathons-content">
+  <!-- JS will populate this -->
+</main>
+
+<!-- Social / Footer -->
+<footer class="social">
+  <p>© NUS Bitscraps</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('data/hackathons.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('hackathons-content');
+      Object.keys(data).forEach(year => {
+        const section = document.createElement('section');
+        section.classList.add('year-section');
+
+        const h2 = document.createElement('h2');
+        h2.textContent = year + ": " + data[year].title;
+        section.appendChild(h2);
+
+        const p = document.createElement('p');
+        p.textContent = data[year].description;
+        section.appendChild(p);
+
+        // Image gallery
+        const gallery = document.createElement('div');
+        gallery.classList.add('image-gallery');
+        data[year].images.forEach(src => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = year + " hackathon";
+          gallery.appendChild(img);
+        });
+
+        section.appendChild(gallery);
+        container.appendChild(section);
+      });
+    })
+    .catch(err => console.error("Failed to load hackathons.json:", err));
+});
+</script>
+</body>
+</html>

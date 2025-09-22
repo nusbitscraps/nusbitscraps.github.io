@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NUS Bitscraps - Exco</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js"></script>
+</head>
+<body>
+
+<!-- Navigation -->
+<header id="main-nav"></header>
+
+<!-- Header Section -->
+<section class="header">
+  <h1>Exco Members</h1>
+  <p>Meet our club executives from AY23 to AY25!</p>
+</section>
+
+<!-- Dynamic Content -->
+<main class="tab-content active" id="exco-content">
+  <!-- JS will populate this -->
+</main>
+
+<!-- Social / Footer -->
+<footer class="social">
+  <p>© NUS Bitscraps</p>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('data/exco.json')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('exco-content');
+
+      Object.keys(data).forEach(year => {
+        const yearSection = document.createElement('section');
+        yearSection.classList.add('year-section');
+
+        const h2 = document.createElement('h2');
+        h2.textContent = year + " Exco";
+        yearSection.appendChild(h2);
+
+        // Group members by department
+        const departments = {};
+        data[year].forEach(member => {
+          if (!departments[member.department]) departments[member.department] = [];
+          departments[member.department].push(member);
+        });
+
+        Object.keys(departments).forEach(dept => {
+          const deptDiv = document.createElement('div');
+          deptDiv.classList.add('department-section');
+
+          const deptTitle = document.createElement('h3');
+          deptTitle.textContent = dept;
+          deptDiv.appendChild(deptTitle);
+
+          const membersDiv = document.createElement('div');
+          membersDiv.classList.add('members-grid');
+
+          departments[dept].forEach(member => {
+            const memberCard = document.createElement('div');
+            memberCard.classList.add('member-card');
+
+            const img = document.createElement('img');
+            img.src = member.photo;
+            img.alt = member.name;
+
+            const name = document.createElement('p');
+            name.textContent = member.name + " — " + member.role;
+
+            memberCard.appendChild(img);
+            memberCard.appendChild(name);
+            membersDiv.appendChild(memberCard);
+          });
+
+          deptDiv.appendChild(membersDiv);
+          yearSection.appendChild(deptDiv);
+        });
+
+        container.appendChild(yearSection);
+      });
+    })
+    .catch(err => console.error("Failed to load exco.json:", err));
+});
+</script>
+</body>
+</html>
