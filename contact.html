@@ -9,6 +9,14 @@
 </head>
 <body>
 
+  <section id="loader">
+  <div class="loader-wrapper">
+    <div class="spinner"></div>
+    <p>Loading...</p>
+  </div>
+</section>
+
+
 <!-- Header / Navigation -->
 <header id="main-nav"></header>
 
@@ -51,5 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(err => console.error("Failed to load contact.json:", err));
 });
 </script>
+<script src="js/loader.js"></script>
 </body>
 </html>
