@@ -588,7 +588,8 @@ footer.social a:hover {
   }
 
   #main-nav.nav-open .nav-menu-container {
-    max-height: 500px;
+    max-height: 100vh;
+    overflow-y: auto;
   }
 
   #main-nav ul {
