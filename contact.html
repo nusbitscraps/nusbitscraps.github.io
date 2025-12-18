@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NUS Bitscraps - Contact Us</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/nav.js"></script>
 </head>
 <body>
 
@@ -29,6 +28,7 @@
 <!-- Dynamic Content -->
 <main class="tab-content active" id="contact-content">
   <h2>Our Social Channels</h2>
+  <p>Follow us on social media to stay updated with our latest activities and events!</p>
   <div class="social-links" id="social-links">
     <!-- JS will populate this -->
   </div>
@@ -39,24 +39,46 @@
   <p>© NUS Bitscraps</p>
 </footer>
 
+<script src="js/nav.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   fetch('data/contact.json')
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Failed to fetch contact.json: ' + res.status);
+      }
+      return res.json();
+    })
     .then(data => {
       const container = document.getElementById('social-links');
+      
+      if (!container) {
+        console.error('Social links container not found');
+        return;
+      }
+
+      if (!data.socials || !Array.isArray(data.socials)) {
+        console.error('Invalid socials data');
+        return;
+      }
+
       data.socials.forEach(social => {
-        const a = document.createElement('a');
-        a.href = social.url;
-        a.textContent = social.name;
-        a.target = "_blank";
-        a.style.margin = "0 1rem";
-        a.style.fontWeight = "bold";
-        a.style.color = "#FF7F00"; // Optional: highlight color
-        container.appendChild(a);
+        const socialLink = document.createElement('a');
+        socialLink.href = social.url;
+        socialLink.textContent = social.name;
+        socialLink.target = "_blank";
+        socialLink.rel = "noopener noreferrer";
+        socialLink.classList.add('social-link-item');
+        container.appendChild(socialLink);
       });
     })
-    .catch(err => console.error("Failed to load contact.json:", err));
+    .catch(err => {
+      console.error("Failed to load contact.json:", err);
+      const container = document.getElementById('social-links');
+      if (container) {
+        container.innerHTML = '<p style="text-align: center; color: red;">Error loading contact information.</p>';
+      }
+    });
 });
 </script>
 <script src="js/loader.js"></script>

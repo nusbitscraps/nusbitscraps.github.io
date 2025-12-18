@@ -155,7 +155,7 @@ body {
 main.tab-content {
   flex: 1;
   padding: var(--spacing-xl) var(--spacing-md);
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
@@ -250,21 +250,21 @@ footer.social a:hover {
 .exco-other-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
   justify-content: center;
   align-items: flex-start;
-  padding: var(--spacing-sm) 0;
+  padding: var(--spacing-xs) 0;
   width: 100%;
 }
 
 .exco-main-grid {
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
 .member-card {
-  width: 180px;
+  width: 160px;
   text-align: center;
-  padding: var(--spacing-md);
+  padding: var(--spacing-sm);
   border-radius: 12px;
   background: var(--white);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
@@ -277,12 +277,12 @@ footer.social a:hover {
 }
 
 .member-card img {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   object-fit: cover;
   border-radius: 50%;
   display: block;
-  margin: 0 auto var(--spacing-sm);
+  margin: 0 auto var(--spacing-xs);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -292,6 +292,46 @@ footer.social a:hover {
   font-weight: 500;
   color: var(--dark-blue);
   line-height: 1.4;
+}
+
+/* ==========================
+   Contact Section
+========================== */
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) auto;
+  max-width: 800px;
+}
+
+.social-link-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  color: var(--dark-blue);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: var(--font-size-lg);
+  border: 2px solid var(--dark-blue);
+  border-radius: 8px;
+  transition: all var(--transition-base);
+  min-width: 140px;
+  text-align: center;
+}
+
+.social-link-item:hover {
+  background: var(--dark-blue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(25, 27, 66, 0.2);
+}
+
+.social-link-item:active {
+  transform: translateY(0);
 }
 
 /* ==========================
@@ -394,6 +434,15 @@ footer.social a:hover {
     border-radius: 8px;
   }
 
+  .social-links {
+    gap: var(--spacing-sm);
+  }
+
+  .social-link-item {
+    min-width: 130px;
+    font-size: var(--font-size-base);
+  }
+
   .exco-main-grid,
   .exco-other-grid {
     gap: var(--spacing-sm);
@@ -433,5 +482,16 @@ footer.social a:hover {
 
   .member-card p {
     font-size: 0.875rem;
+  }
+
+  .social-links {
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) auto;
+  }
+
+  .social-link-item {
+    min-width: 120px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: var(--font-size-base);
   }
 }
