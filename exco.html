@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NUS Bitscraps - Exco</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/nav.js"></script>
 </head>
 <body>
 
@@ -28,7 +27,7 @@
 
 <!-- Dynamic Content -->
 <main class="tab-content active" id="exco-content">
-  <!-- JS will populate this -->
+  <p style="text-align: center; padding: 2rem;">Loading exco data...</p>
 </main>
 
 <!-- Social / Footer -->
@@ -36,14 +35,33 @@
   <p>© NUS Bitscraps</p>
 </footer>
 
+<script src="js/nav.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   fetch('data/exco.json')
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Failed to fetch exco.json: ' + res.status);
+      }
+      return res.json();
+    })
     .then(data => {
       const container = document.getElementById('exco-content');
+      
+      if (!container) {
+        console.error('Container element #exco-content not found');
+        return;
+      }
+
+      container.innerHTML = '';
 
       Object.keys(data).forEach(year => {
+        const yearData = data[year];
+        
+        if (!yearData || typeof yearData !== 'object') {
+          return;
+        }
+
         const yearSection = document.createElement('section');
         yearSection.classList.add('year-section');
 
@@ -51,48 +69,75 @@ document.addEventListener('DOMContentLoaded', () => {
         h2.textContent = year + " Exco";
         yearSection.appendChild(h2);
 
-        // Group members by department
-        const departments = {};
-        data[year].forEach(member => {
-          if (!departments[member.department]) departments[member.department] = [];
-          departments[member.department].push(member);
-        });
+        // Main executives (President + VPs) - Line 1
+        if (yearData.main && Array.isArray(yearData.main) && yearData.main.length > 0) {
+          const mainDiv = document.createElement('div');
+          mainDiv.classList.add('exco-main-grid');
 
-        Object.keys(departments).forEach(dept => {
-          const deptDiv = document.createElement('div');
-          deptDiv.classList.add('department-section');
-
-          const deptTitle = document.createElement('h3');
-          deptTitle.textContent = dept;
-          deptDiv.appendChild(deptTitle);
-
-          const membersDiv = document.createElement('div');
-          membersDiv.classList.add('members-grid');
-
-          departments[dept].forEach(member => {
+          yearData.main.forEach(member => {
+            if (!member || !member.photo) return;
+            
             const memberCard = document.createElement('div');
             memberCard.classList.add('member-card');
 
             const img = document.createElement('img');
             img.src = member.photo;
-            img.alt = member.name;
+            img.alt = member.name || '';
 
             const name = document.createElement('p');
             name.textContent = member.name + " — " + member.role;
 
             memberCard.appendChild(img);
             memberCard.appendChild(name);
-            membersDiv.appendChild(memberCard);
+            mainDiv.appendChild(memberCard);
           });
 
-          deptDiv.appendChild(membersDiv);
-          yearSection.appendChild(deptDiv);
-        });
+          if (mainDiv.children.length > 0) {
+            yearSection.appendChild(mainDiv);
+          }
+        }
 
-        container.appendChild(yearSection);
+        // Other executives - Line 2
+        if (yearData.other && Array.isArray(yearData.other) && yearData.other.length > 0) {
+          const otherDiv = document.createElement('div');
+          otherDiv.classList.add('exco-other-grid');
+
+          yearData.other.forEach(member => {
+            if (!member || !member.photo) return;
+            
+            const memberCard = document.createElement('div');
+            memberCard.classList.add('member-card');
+
+            const img = document.createElement('img');
+            img.src = member.photo;
+            img.alt = member.name || '';
+
+            const name = document.createElement('p');
+            name.textContent = member.name + " — " + member.role;
+
+            memberCard.appendChild(img);
+            memberCard.appendChild(name);
+            otherDiv.appendChild(memberCard);
+          });
+
+          if (otherDiv.children.length > 0) {
+            yearSection.appendChild(otherDiv);
+          }
+        }
+
+        // Append year section if it has content (more than just h2)
+        if (yearSection.children.length > 1) {
+          container.appendChild(yearSection);
+        }
       });
     })
-    .catch(err => console.error("Failed to load exco.json:", err));
+    .catch(err => {
+      console.error("Failed to load exco.json:", err);
+      const container = document.getElementById('exco-content');
+      if (container) {
+        container.innerHTML = '<p style="text-align: center; color: red; padding: 2rem;">Error loading exco data: ' + err.message + '</p>';
+      }
+    });
 });
 </script>
 <script src="js/loader.js"></script>
