@@ -6,6 +6,7 @@
   <title>NUS Bitscraps - Donation Drive</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
 
@@ -42,31 +43,25 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('donations-content');
-      Object.keys(data).forEach(year => {
+      if (!container) return;
+      container.innerHTML = '';
+      const keys = Object.keys(data || {}).sort().reverse();
+      keys.forEach(year => {
+        const item = data[year] || {};
+        const images = (item.images || []).map(src => `<img src="${src}" alt="${year} donation">`).join('');
         const section = document.createElement('section');
         section.classList.add('year-section');
-
-        const h2 = document.createElement('h2');
-        h2.textContent = year + " Donation Drive";
-        section.appendChild(h2);
-
-        const p = document.createElement('p');
-        p.textContent = data[year].description;
-        section.appendChild(p);
-
-        // Image gallery
-        const gallery = document.createElement('div');
-        gallery.classList.add('image-gallery');
-        data[year].images.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = year + " donation";
-          gallery.appendChild(img);
-        });
-
-        section.appendChild(gallery);
+        section.innerHTML = `
+          <h2>${year} Donation Drive</h2>
+          <div class="collapsible-body">
+            <p>${item.description || ''}</p>
+            <div class="image-gallery">${images}</div>
+          </div>
+        `;
         container.appendChild(section);
       });
+
+      if (window.initAccordions) window.initAccordions('#donations-content');
     })
     .catch(err => console.error("Failed to load donations.json:", err));
 });

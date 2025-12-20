@@ -6,6 +6,7 @@
   <title>NUS Bitscraps - Repair Sessions</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
 
@@ -41,31 +42,25 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('repairs-content');
-      Object.keys(data).forEach(device => {
+      if (!container) return;
+      container.innerHTML = '';
+      const keys = Object.keys(data || {}).sort().reverse();
+      keys.forEach(device => {
+        const item = data[device] || {};
+        const images = (item.images || []).map(src => `<img src="${src}" alt="${device} repair">`).join('');
         const section = document.createElement('section');
-        section.classList.add('device-section');
-
-        const h2 = document.createElement('h2');
-        h2.textContent = device;
-        section.appendChild(h2);
-
-        const p = document.createElement('p');
-        p.textContent = data[device].description;
-        section.appendChild(p);
-
-        // Image gallery
-        const gallery = document.createElement('div');
-        gallery.classList.add('image-gallery');
-        data[device].images.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = device + " repair";
-          gallery.appendChild(img);
-        });
-
-        section.appendChild(gallery);
+        section.classList.add('year-section');
+        section.innerHTML = `
+          <h2>${device}</h2>
+          <div class="collapsible-body">
+            <p>${item.description || ''}</p>
+            <div class="image-gallery">${images}</div>
+          </div>
+        `;
         container.appendChild(section);
       });
+
+      if (window.initAccordions) window.initAccordions('#repairs-content');
     })
     .catch(err => console.error("Failed to load repairs.json:", err));
 });

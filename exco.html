@@ -36,6 +36,7 @@
 </footer>
 
 <script src="js/nav.js"></script>
+<script src="js/main.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   fetch('data/exco.json')
@@ -47,89 +48,57 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
       const container = document.getElementById('exco-content');
-      
-      if (!container) {
-        console.error('Container element #exco-content not found');
-        return;
-      }
-
+      if (!container) return;
       container.innerHTML = '';
 
-      Object.keys(data).forEach(year => {
-        const yearData = data[year];
-        
-        if (!yearData || typeof yearData !== 'object') {
-          return;
-        }
+      const keys = Object.keys(data || {}).sort().reverse();
+      keys.forEach(year => {
+        const yearData = data[year] || {};
 
-        const yearSection = document.createElement('section');
-        yearSection.classList.add('year-section');
+        const mainHtml = (yearData.main || []).map(m => `
+          <div class="member-card">
+            <img src="${m.photo}" alt="${m.name || ''}">
+            <p>${m.name || ''} — ${m.role || ''}</p>
+          </div>
+        `).join('');
 
-        const h2 = document.createElement('h2');
-        h2.textContent = year + " Exco";
-        yearSection.appendChild(h2);
+        const otherHtml = (yearData.other || []).map(m => `
+          <div class="member-card">
+            <img src="${m.photo}" alt="${m.name || ''}">
+            <p>${m.name || ''} — ${m.role || ''}</p>
+          </div>
+        `).join('');
 
-        // Main executives (President + VPs) - Line 1
-        if (yearData.main && Array.isArray(yearData.main) && yearData.main.length > 0) {
-          const mainDiv = document.createElement('div');
-          mainDiv.classList.add('exco-main-grid');
+        // sort subcomm by department
+        const subList = (yearData.subcomm || []).slice().sort((a,b)=>{
+          const A=(a&&a.department||'').toLowerCase();
+          const B=(b&&b.department||'').toLowerCase();
+          return A<B?-1:(A>B?1:0);
+        });
 
-          yearData.main.forEach(member => {
-            if (!member || !member.photo) return;
-            
-            const memberCard = document.createElement('div');
-            memberCard.classList.add('member-card');
+        const subHtml = subList.map(m => `
+          <div class="member-card">
+            <img src="${m.photo}" alt="${m.name || ''}">
+            <p>${m.name || ''}</p>
+            <p class="member-dept">${m.department || ''}</p>
+          </div>
+        `).join('');
 
-            const img = document.createElement('img');
-            img.src = member.photo;
-            img.alt = member.name || '';
+        const section = document.createElement('section');
+        section.classList.add('year-section');
+        section.innerHTML = `
+          <h2>${year} Exco</h2>
+          <div class="collapsible-body">
+            ${ mainHtml ? `<h3 class="grid-title">Heads</h3><div class="exco-main-grid">${mainHtml}</div>` : '' }
+            ${ otherHtml ? `<h3 class="grid-title">SubComm heads</h3><div class="exco-other-grid">${otherHtml}</div>` : '' }
+            ${ subHtml ? `<h3 class="grid-title">SubComm</h3><div class="exco-subcomm-grid">${subHtml}</div>` : '' }
+          </div>
+        `;
 
-            const name = document.createElement('p');
-            name.textContent = member.name + " — " + member.role;
-
-            memberCard.appendChild(img);
-            memberCard.appendChild(name);
-            mainDiv.appendChild(memberCard);
-          });
-
-          if (mainDiv.children.length > 0) {
-            yearSection.appendChild(mainDiv);
-          }
-        }
-
-        // Other executives - Line 2
-        if (yearData.other && Array.isArray(yearData.other) && yearData.other.length > 0) {
-          const otherDiv = document.createElement('div');
-          otherDiv.classList.add('exco-other-grid');
-
-          yearData.other.forEach(member => {
-            if (!member || !member.photo) return;
-            
-            const memberCard = document.createElement('div');
-            memberCard.classList.add('member-card');
-
-            const img = document.createElement('img');
-            img.src = member.photo;
-            img.alt = member.name || '';
-
-            const name = document.createElement('p');
-            name.textContent = member.name + " — " + member.role;
-
-            memberCard.appendChild(img);
-            memberCard.appendChild(name);
-            otherDiv.appendChild(memberCard);
-          });
-
-          if (otherDiv.children.length > 0) {
-            yearSection.appendChild(otherDiv);
-          }
-        }
-
-        // Append year section if it has content (more than just h2)
-        if (yearSection.children.length > 1) {
-          container.appendChild(yearSection);
-        }
+        container.appendChild(section);
       });
+
+      if (window.initAccordions) window.initAccordions('#exco-content');
     })
     .catch(err => {
       console.error("Failed to load exco.json:", err);

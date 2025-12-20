@@ -57,6 +57,13 @@
         "name": "Deny",
         "photo": "img/exco/AY25-26/deny.webp"
       }
+    ],
+    "subcomm": [
+      {
+        "department": "Publicity",
+        "name": "Harshit Srivastava",
+        "photo": "img/exco/AY24-25/charlie.webp"
+      }
     ]
   }
 }

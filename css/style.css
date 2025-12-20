@@ -264,7 +264,7 @@ main.tab-content h2 {
   padding-bottom: var(--spacing-sm);
 }
 
-main.tab-content h2::after {
+main.tab-content h2:not(.year-toggle)::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -274,6 +274,42 @@ main.tab-content h2::after {
   height: 3px;
   background: linear-gradient(90deg, var(--orange) 0%, var(--green) 100%);
   border-radius: 2px;
+}
+
+/* Ensure accordion header can host a persistent active underline */
+.year-toggle {
+  position: relative;
+}
+
+/* Persistent underline for accordion header: hidden by default, visible with tricolour when open */
+.year-toggle::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0.5rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange) 0%, var(--green) 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform-origin: center;
+}
+
+.year-section.open .year-toggle::before {
+  opacity: 1;
+}
+
+/* Prevent mouse-click focus from showing the orange outline/underline. Keep keyboard focus-visible. */
+.year-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.year-toggle:focus-visible {
+  outline: 2px solid var(--orange-light);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(25,27,66,0.06);
 }
 
 main.tab-content h2:first-child {
@@ -301,25 +337,29 @@ main.tab-content p {
   align-items: flex-start;
 }
 
-/* ==========================
-   Images in Content
-========================== */
-main.tab-content img {
-  width: 100%;
-  max-width: 350px;
-  aspect-ratio: 16 / 9;
+.image-gallery img {
+  width: calc(33.333% - 1rem);
+  max-width: 220px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(25, 27, 66, 0.1);
-  border: 1px solid var(--gray-medium);
-  transition: all var(--transition-base);
-  flex-shrink: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(25,27,66,0.08);
+  cursor: zoom-in;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
-main.tab-content img:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(25, 27, 66, 0.2);
-  border-color: var(--orange-light);
+.image-gallery img:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Keep grid on small screens by reducing item width rather than stacking */
+@media (max-width: 480px) {
+  .image-gallery img {
+    width: calc(50% - 0.6rem);
+    max-width: 140px;
+    height: 100px;
+    border-radius: 6px;
+  }
 }
 
 /* ==========================
@@ -358,10 +398,15 @@ footer.social a:hover {
 ========================== */
 .year-section {
   margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--gray-medium);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
 }
 
 .exco-main-grid,
-.exco-other-grid {
+.exco-other-grid,
+.exco-subcomm-grid {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm);
@@ -372,6 +417,10 @@ footer.social a:hover {
 }
 
 .exco-main-grid {
+  margin-bottom: var(--spacing-sm);
+}
+
+.exco-subcomm-grid {
   margin-bottom: var(--spacing-sm);
 }
 
@@ -409,6 +458,18 @@ footer.social a:hover {
   font-weight: 500;
   color: var(--dark-blue);
   line-height: 1.4;
+}
+
+.member-card .member-dept {
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* keep department text color stable on hover */
+.member-card:hover .member-dept {
+  color: var(--text-secondary);
 }
 
 .member-card:hover p {
@@ -647,7 +708,8 @@ footer.social a:hover {
   }
 
   .exco-main-grid,
-  .exco-other-grid {
+  .exco-other-grid,
+  .exco-subcomm-grid {
     gap: var(--spacing-sm);
     padding: var(--spacing-sm) 0;
   }
@@ -669,7 +731,8 @@ footer.social a:hover {
   }
 
   .exco-main-grid,
-  .exco-other-grid {
+  .exco-other-grid,
+  .exco-subcomm-grid {
     gap: var(--spacing-xs);
   }
 
@@ -697,4 +760,145 @@ footer.social a:hover {
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--font-size-base);
   }
+}
+
+/* Collapsible year sections */
+.year-toggle {
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  text-align: center;
+}
+
+.collapsible-body {
+  display: none;
+  padding-top: 0.75rem;
+  transition: max-height 0.25s ease-out, opacity 0.2s ease;
+}
+
+.year-section.open .collapsible-body {
+  display: block;
+}
+
+.year-section .year-toggle:focus {
+  outline: 2px solid var(--orange-light);
+  border-radius: 6px;
+}
+
+/* Accordion visual improvements */
+.year-section {
+  margin-bottom: var(--spacing-lg);
+  border: 1px solid var(--gray-medium);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.year-toggle {
+  cursor: pointer;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(90deg, rgba(250,250,250,1), rgba(245,245,247,1));
+  border: 0;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--dark-blue);
+  width: 100%;
+}
+
+.year-toggle::after {
+  content: '▸';
+  display: inline-block;
+  transition: transform 0.22s ease, color 0.22s ease;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  transform-origin: center;
+}
+
+.year-section.open .year-toggle::after {
+  transform: rotate(90deg);
+  color: var(--orange);
+}
+
+.collapsible-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 1rem;
+  transition: max-height 0.34s cubic-bezier(.2,.8,.2,1), opacity 0.2s ease, padding 0.2s ease;
+}
+
+.year-section.open .collapsible-body {
+  max-height: 1200px; /* big enough to accommodate content */
+  opacity: 1;
+  padding: var(--spacing-sm) 1rem var(--spacing-md) 1rem;
+}
+
+.year-section .year-toggle:focus {
+  outline: 2px solid var(--orange-light);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(25,27,66,0.06);
+}
+
+/* Slightly separate inner grids from header */
+.collapsible-body > .exco-main-grid,
+.collapsible-body > .exco-other-grid,
+.collapsible-body > .exco-subcomm-grid,
+.collapsible-body > .image-gallery {
+  margin-top: var(--spacing-sm);
+}
+
+/* Prevent mouse-click focus from showing the orange outline/underline.
+   Keep a visible outline only for keyboard users via :focus-visible for accessibility. */
+.year-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.year-toggle:focus-visible {
+  outline: 2px solid var(--orange-light);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(25,27,66,0.06);
+}
+
+/* ==========================
+   Modal Styles
+========================== */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20000;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
+}
+
+.image-modal.open {
+  visibility: visible;
+  opacity: 1;
+}
+
+.image-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.image-modal-img {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  z-index: 20001;
+  cursor: zoom-out;
 }

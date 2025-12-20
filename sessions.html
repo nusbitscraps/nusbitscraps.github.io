@@ -6,6 +6,7 @@
   <title>NUS Bitscraps - Sessions</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
 
@@ -43,31 +44,33 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById('sessions-content');
-      Object.keys(data).forEach(year => {
-        const section = document.createElement('section');
-        section.classList.add('year-section');
+      if (!container) return;
+      container.innerHTML = '';
+      const keys = Object.keys(data || {}).sort().reverse();
+      keys.forEach(year => {
+        try {
+          const item = data[year] || {};
+          const images = (item.images || []).map(src => `<img src="${src}" alt="${year} session">`).join('');
+          const section = document.createElement('section');
+          section.classList.add('year-section');
 
-        const h2 = document.createElement('h2');
-        h2.textContent = year + " Sessions";
-        section.appendChild(h2);
+          section.innerHTML = `
+            <h2>${year} Sessions</h2>
+            <div class="collapsible-body">
+              <p>${item.description || ''}</p>
+              <div class="image-gallery">
+                ${images}
+              </div>
+            </div>
+          `;
 
-        const p = document.createElement('p');
-        p.textContent = data[year].description;
-        section.appendChild(p);
-
-        // Image gallery
-        const gallery = document.createElement('div');
-        gallery.classList.add('image-gallery');
-        data[year].images.forEach(src => {
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = year + " session";
-          gallery.appendChild(img);
-        });
-
-        section.appendChild(gallery);
-        container.appendChild(section);
+          container.appendChild(section);
+        } catch (e) {
+          console.error('Failed to render session for', year, e);
+        }
       });
+
+      if (window.initAccordions) window.initAccordions('#sessions-content');
     })
     .catch(err => console.error("Failed to load sessions.json:", err));
 });
