@@ -1,9 +1,20 @@
 {
-  "AY25": {
-    "description": "Donation drive with improved categorization and better awareness campaigns.",
+  "AY25-26": {
+    "description": "",
     "images": [
-      "img/donations/AY25-26 Sem1/donation1.webp",
-      "img/donations/AY25-26 Sem1/donation2.webp"
+      "img/donations/AY25-26/donation1.webp",
+      "img/donations/AY25-26/donation2.webp"
+    ]
+  },
+  "AY24-25": {
+    "description": "",
+    "images": [
+      "img/donations/AY24-25/donation1.webp",
+      "img/donations/AY24-25/donation2.webp",
+      "img/donations/AY24-25/donation3.webp",
+      "img/donations/AY24-25/donation4.webp",
+      "img/donations/AY24-25/donation5.webp",
+      "img/donations/AY24-25/donation6.webp"
     ]
   }
 }
