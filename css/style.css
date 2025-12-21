@@ -411,7 +411,8 @@ footer.social a:hover {
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   justify-content: center;
-  align-items: flex-start;
+  /* stretch children so cards are equal height */
+  align-items: stretch;
   padding: var(--spacing-xs) 0;
   width: 100%;
 }
@@ -426,6 +427,11 @@ footer.social a:hover {
 
 .member-card {
   width: 160px;
+  /* make cards consistent height and layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   text-align: center;
   padding: var(--spacing-sm);
   border-radius: 12px;
@@ -433,6 +439,8 @@ footer.social a:hover {
   border: 1px solid var(--gray-medium);
   transition: all var(--transition-base);
   flex-shrink: 0;
+  box-sizing: border-box;
+  min-height: 220px; /* ensures equal height */
 }
 
 .member-card:hover {
@@ -448,8 +456,9 @@ footer.social a:hover {
   object-fit: cover;
   border-radius: 50%;
   display: block;
-  margin: 0 auto var(--spacing-xs);
+  margin: 0 var(--spacing-sm) var(--spacing-xs);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  align-self: center; 
 }
 
 .member-card p {
@@ -458,16 +467,20 @@ footer.social a:hover {
   font-weight: 500;
   color: var(--dark-blue);
   line-height: 1.4;
+  word-break: break-word;
+  width: auto;
+  padding: 0; 
+  text-align: center; 
 }
 
-.member-card .member-dept {
+.member-card .member-dept, .member-card .head-dept, .member-card .main-head {
   margin-top: 0.25rem;
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--text-secondary);
+  text-align: center;
 }
 
-/* keep department text color stable on hover */
 .member-card:hover .member-dept {
   color: var(--text-secondary);
 }
@@ -717,6 +730,7 @@ footer.social a:hover {
   .member-card {
     width: 150px;
     padding: var(--spacing-sm);
+    min-height: 200px;
   }
 
   .member-card img {
@@ -739,6 +753,7 @@ footer.social a:hover {
   .member-card {
     width: 140px;
     padding: var(--spacing-xs);
+    min-height: 180px;
   }
 
   .member-card img {

@@ -2,19 +2,16 @@
   "Present": {
     "main": [
       {
-        "department": "President",
         "role": "President",
         "name": "Anvi Shah",
         "photo": "img/exco/AY25-26/anvi_shah.webp"
       },
       {
-        "department": "Vice President (I)",
         "role": "Vice President (I)",
         "name": "Ritikaa Rajkumar",
         "photo": "img/exco/AY25-26/ritikaa_rajkumar.webp"
       },
       {
-        "department": "Vice President (E)",
         "role": "Vice President (E)",
         "name": "Yi Ning Lim",
         "photo": "img/exco/AY25-26/yi_ning_lim.webp"
@@ -23,37 +20,31 @@
     "other": [
       {
         "department": "Publicity",
-        "role": "Head of Publicity",
         "name": "Anya Agarwal",
         "photo": "img/exco/AY25-26/anya_agarwal.webp"
       },
       {
         "department": "TOPs",
-        "role": "Head of TOPs",
         "name": "Selina",
         "photo": "img/exco/AY25-26/selina.webp"
       },
       {
         "department": "Events",
-        "role": "Head of Events",
         "name": "Ravi",
         "photo": "img/exco/AY25-26/ravi.webp"
       },
       {
         "department": "Marketing",
-        "role": "Head of Marketing",
         "name": "Shriradhya",
         "photo": "img/exco/AY25-26/shriradhya.webp"
       },
       {
         "department": "Finance",
-        "role": "Head of Finance",
         "name": "Harii",
         "photo": "img/exco/AY25-26/harii.webp"
       },
       {
         "department": "Human Resource",
-        "role": "Head of Human Resource",
         "name": "Deny",
         "photo": "img/exco/AY25-26/deny.webp"
       }

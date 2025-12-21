@@ -58,14 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainHtml = (yearData.main || []).map(m => `
           <div class="member-card">
             <img src="${m.photo}" alt="${m.name || ''}">
-            <p>${m.name || ''} — ${m.role || ''}</p>
+            <p>${m.name || ''}</p>
+            <p class="main-head">${`${m.role}` || ''}</p>
           </div>
         `).join('');
 
         const otherHtml = (yearData.other || []).map(m => `
           <div class="member-card">
             <img src="${m.photo}" alt="${m.name || ''}">
-            <p>${m.name || ''} — ${m.role || ''}</p>
+            <p>${m.name || ''}</p>
+            <p class="head-dept">${`${m.department} Head` || ''}</p>
           </div>
         `).join('');
 
