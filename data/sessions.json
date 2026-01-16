@@ -2,12 +2,45 @@
   "AY25-26 Sem 1": {
     "description": "Photos from our first three session of the AY25-26 Sem1.",
     "images": [
-      "img/sessions/AY25-26 Sem-1/session1.webp",
-      "img/sessions/AY25-26 Sem-1/session2.webp",
-      "img/sessions/AY25-26 Sem-1/session3.webp",
-      "img/sessions/AY25-26 Sem-1/session4.webp",
-      "img/sessions/AY25-26 Sem-1/session5.webp",
-      "img/sessions/AY25-26 Sem-1/session6.webp"
+      "img/sessions/AY25-26 Sem-1/image1.webp",
+      "img/sessions/AY25-26 Sem-1/image2.webp",
+      "img/sessions/AY25-26 Sem-1/image3.webp",
+      "img/sessions/AY25-26 Sem-1/image4.webp",
+      "img/sessions/AY25-26 Sem-1/image5.webp",
+      "img/sessions/AY25-26 Sem-1/image6.webp",
+      "img/sessions/AY25-26 Sem-1/image7.webp",
+      "img/sessions/AY25-26 Sem-1/image8.webp",
+      "img/sessions/AY25-26 Sem-1/image9.webp",
+      "img/sessions/AY25-26 Sem-1/image10.webp",
+      "img/sessions/AY25-26 Sem-1/image11.webp"
+    ]
+  },
+  "AY24-25 Sem 2": {
+    "description": "Photos from our first three session of the AY24-25 Sem2.",
+    "images": [
+      "img/sessions/AY24-25 Sem-2/image1.webp",
+      "img/sessions/AY24-25 Sem-2/image2.webp",
+      "img/sessions/AY24-25 Sem-2/image3.webp",
+      "img/sessions/AY24-25 Sem-2/image4.webp",
+      "img/sessions/AY24-25 Sem-2/image5.webp",
+      "img/sessions/AY24-25 Sem-2/image6.webp",
+      "img/sessions/AY24-25 Sem-2/image5.webp",
+      "img/sessions/AY24-25 Sem-2/image6.webp",
+      "img/sessions/AY24-25 Sem-2/image7.webp",
+      "img/sessions/AY24-25 Sem-2/image8.webp",
+      "img/sessions/AY24-25 Sem-2/image9.webp",
+      "img/sessions/AY24-25 Sem-2/image10.webp",
+      "img/sessions/AY24-25 Sem-2/image11.webp",
+      "img/sessions/AY24-25 Sem-2/image12.webp",
+      "img/sessions/AY24-25 Sem-2/image13.webp",
+      "img/sessions/AY24-25 Sem-2/image14.webp",
+      "img/sessions/AY24-25 Sem-2/image15.webp",
+      "img/sessions/AY24-25 Sem-2/image16.webp",
+      "img/sessions/AY24-25 Sem-2/image17.webp",
+      "img/sessions/AY24-25 Sem-2/image18.webp",
+      "img/sessions/AY24-25 Sem-2/image19.webp",
+      "img/sessions/AY24-25 Sem-2/image20.webp",
+      "img/sessions/AY24-25 Sem-2/image21.webp"
     ]
   }
 }
