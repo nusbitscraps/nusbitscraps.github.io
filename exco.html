@@ -32,7 +32,7 @@
 
 <!-- Social / Footer -->
 <footer class="social">
-  <p>© NUS Bitscraps</p>
+  <p>© NUS Bitscraps · Made by Harshit</p>
 </footer>
 
 <script src="js/nav.js"></script>
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const mainHtml = (yearData.main || []).map(m => `
           <div class="member-card">
-            <img src="${m.photo}" alt="${m.name || ''}">
+            <img src="${m.photo}" alt="${" "}>
             <p>${m.name || ''}</p>
             <p class="main-head">${`${m.role}` || ''}</p>
           </div>
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const otherHtml = (yearData.other || []).map(m => `
           <div class="member-card">
-            <img src="${m.photo}" alt="${m.name || ''}">
+            <img src="${m.photo}" alt="${" "}>
             <p>${m.name || ''}</p>
             <p class="head-dept">${`${m.department} Head` || ''}</p>
           </div>
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const subHtml = subList.map(m => `
           <div class="member-card">
-            <img src="${m.photo}" alt="${m.name || ''}">
+            <img src="${m.photo}" alt="${" "}">
             <p>${m.name || ''}</p>
             <p class="member-dept">${m.department || ''}</p>
           </div>
