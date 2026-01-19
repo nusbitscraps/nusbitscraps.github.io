@@ -1,52 +1,220 @@
 {
-  "Present": {
+  "AY2526 Semester 2": {
     "main": [
       {
         "role": "President",
         "name": "Anvi Shah",
-        "photo": "img/exco/AY25-26/anvi_shah.webp"
+        "photo": "img/exco/anvi_shah.png"
       },
       {
         "role": "Vice President (I)",
         "name": "Ritikaa Rajkumar",
-        "photo": "img/exco/AY25-26/ritikaa_rajkumar.webp"
+        "photo": "img/exco/ritikaa_rajkumar.png"
       },
       {
         "role": "Vice President (E)",
         "name": "Yi Ning Lim",
-        "photo": "img/exco/AY25-26/yi_ning_lim.webp"
+        "photo": "img/exco/yi_ning_lim.png"
       }
     ],
     "other": [
       {
         "department": "Publicity",
         "name": "Anya Agarwal",
-        "photo": "img/exco/AY25-26/anya_agarwal.webp"
+        "photo": "img/exco/anya_agarwal.png"
       },
       {
         "department": "TOPs",
-        "name": "Selina",
-        "photo": "img/exco/AY25-26/selina.webp"
+        "name": "Xian Hui",
+        "photo": "img/exco/xian_hui.png"
       },
       {
         "department": "Events",
-        "name": "Ravi",
-        "photo": "img/exco/AY25-26/ravi.webp"
+        "name": "Viswanathan Ravisankar",
+        "photo": "img/exco/viswanathan_ravisankar.png"
       },
       {
         "department": "Marketing",
         "name": "Shriradhya",
-        "photo": "img/exco/AY25-26/shriradhya.webp"
+        "photo": "img/exco/shriradhya.png"
       },
       {
         "department": "Finance",
-        "name": "Harii",
-        "photo": "img/exco/AY25-26/harii.webp"
+        "name": "He Jiaxie",
+        "photo": "img/exco/he_jiaxie.png"
       },
       {
         "department": "Human Resource",
         "name": "Deny",
-        "photo": "img/exco/AY25-26/deny.webp"
+        "photo": "img/exco/deny.png"
+      }
+    ],
+    "subcomm": [
+      {
+        "department": "Finance",
+        "name": "Darren Evander Ali",
+        "photo": "img/exco/darren_evander_ali.png"
+      },
+      {
+        "department": "Finance",
+        "name": "Hariidaran Tamilmaran",
+        "photo": "img/exco/hariidaran_tamilmaran.png"
+      },
+      {
+        "department": "Publicity",
+        "name": "Felicia Grace Angelyn",
+        "photo": "img/exco/felicia_grace_angelyn.png"
+      },
+      {
+        "department": "Publicity",
+        "name": "Vihaan",
+        "photo": "img/exco/vihaan.png"
+      },
+      {
+        "department": "Publicity",
+        "name": "Harshit Srivastava",
+        "photo": "img/exco/harshit_srivastava.png"
+      },
+      {
+        "department": "Publicity",
+        "name": "Amitaansh Grover",
+        "photo": "img/exco/amitaansh_grover.png"
+      },
+      {
+        "department": "Marketing",
+        "name": "Shubham Choudhary",
+        "photo": "img/exco/shubham_choudhary.png"
+      },
+      {
+        "department": "Marketing",
+        "name": "Li Ziyu",
+        "photo": "img/exco/li_ziyu.png"
+      },
+      {
+        "department": "Marketing",
+        "name": "Krishna Agarwal",
+        "photo": "img/exco/krishna_agarwal.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Supasi Chaqorn",
+        "photo": "img/exco/supasi_chaqorn.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Low Zhiyang",
+        "photo": "img/exco/low_zhiyang.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Akshita",
+        "photo": "img/exco/akshita.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Pulikalakath Nazar Mohammed Adil",
+        "photo": "img/exco/pulikalakath_nazar_mohammed_adil.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Elizabeth Wong Xinling",
+        "photo": "img/exco/elizabeth_wong_xinling.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Jai Vinod Kumar Rahul",
+        "photo": "img/exco/jai_vinod_kumar_rahul.png"
+      },
+      {
+        "department": "Events",
+        "name": "Cheng Yew Hon",
+        "photo": "img/exco/cheng_yew_hon.png"
+      },
+      {
+        "department": "Events",
+        "name": "Harihara Puthiran Dheepesh",
+        "photo": "img/exco/harihara_puthiran_dheepesh.png"
+      },
+      {
+        "department": "Events",
+        "name": "Saran Shyam",
+        "photo": "img/exco/saran_shyam.png"
+      },
+      {
+        "department": "Events",
+        "name": "Rajat Gupta",
+        "photo": "img/exco/rajat_gupta.png"
+      },
+      {
+        "department": "Events",
+        "name": "Anaika Mhetras",
+        "photo": "img/exco/anaika_mhetras.png"
+      },
+      {
+        "department": "Events",
+        "name": "Shrishti Bothra",
+        "photo": "img/exco/shrishti_bothra.png"
+      },
+      {
+        "department": "HR",
+        "name": "Piu Parthvi",
+        "photo": "img/exco/piu_parthvi.png"
+      },
+      {
+        "department": "HR",
+        "name": "Nandhini Nachiappan",
+        "photo": "img/exco/nandhini_nachiappan.png"
+      }
+    ]
+  },
+  "AY2526 Semester 1": {
+    "main": [
+      {
+        "role": "President",
+        "name": "Anvi Shah",
+        "photo": "img/exco/anvi_shah.png"
+      },
+      {
+        "role": "Vice President (I)",
+        "name": "Ritikaa Rajkumar",
+        "photo": "img/exco/ritikaa_rajkumar.png"
+      },
+      {
+        "role": "Vice President (E)",
+        "name": "Yi Ning Lim",
+        "photo": "img/exco/yi_ning_lim.png"
+      }
+    ],
+    "other": [
+      {
+        "department": "Publicity",
+        "name": "Anya Agarwal",
+        "photo": "img/exco/anya_agarwal.png"
+      },
+      {
+        "department": "TOPs",
+        "name": "Selina",
+        "photo": "img/exco/selina.png"
+      },
+      {
+        "department": "Events",
+        "name": "Viswanathan Ravisankar",
+        "photo": "img/exco/viswanathan_ravisankar.png"
+      },
+      {
+        "department": "Marketing",
+        "name": "Shriradhya",
+        "photo": "img/exco/shriradhya.png"
+      },
+      {
+        "department": "Finance",
+        "name": "Hariidaran Tamilmaran",
+        "photo": "img/exco/hariidaran_tamilmaran.png"
+      },
+      {
+        "department": "Human Resource",
+        "name": "Deny",
+        "photo": "img/exco/deny.png"
       }
     ]
   }
