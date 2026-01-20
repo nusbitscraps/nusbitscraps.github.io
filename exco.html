@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const mainHtml = (yearData.main || []).map(m => `
           <div class="member-card">
-            <img src="${m.photo}" alt="${" "}>
+            <img src="${m.photo}" alt="${" "}">
             <p>${m.name || ''}</p>
             <p class="main-head">${`${m.role}` || ''}</p>
           </div>
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const otherHtml = (yearData.other || []).map(m => `
           <div class="member-card">
-            <img src="${m.photo}" alt="${" "}>
+            <img src="${m.photo}" alt="${" "}">
             <p>${m.name || ''}</p>
             <p class="head-dept">${`${m.department} Head` || ''}</p>
           </div>
